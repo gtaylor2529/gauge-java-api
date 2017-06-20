@@ -11,7 +11,7 @@ import org.junit.Assert;
 public class GenericGet {
 
     @Step("Retrieve the last updated time from the <endpoint> endpoint")
-    public void GetEndPoint(String endpoint) {
+    public void getEndPoint(String endpoint) {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
         HttpResponse<JsonNode> httpResponse;
         String url = "http://localhost:3000/" + endpoint;
@@ -63,7 +63,7 @@ public class GenericGet {
 
 
     @Step("Assert against last updated time")
-    public void AssertLastUpdatedTime() {
+    public void assertLastUpdatedTime() {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
         String updatedTime = (String) dataStore.get("updatedTime");
         String timeBeforePost = (String) dataStore.get("timeBeforePost");

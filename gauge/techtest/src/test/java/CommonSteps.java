@@ -6,7 +6,7 @@ import org.junit.Assert;
 public class CommonSteps {
 
     @Step("Then the response will be <expectedResponse>")
-    public void ApiResponse(String expectedResponse) {
+    public void apiResponse(String expectedResponse) {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
         String httpResponseStatusText = (String) dataStore.get("httpResponseStatusText");
         Assert.assertEquals(expectedResponse, httpResponseStatusText);

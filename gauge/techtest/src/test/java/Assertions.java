@@ -1,8 +1,3 @@
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
@@ -19,13 +14,13 @@ public class Assertions {
     }
 
     @Step("The request received should be returned")
-    public void AssertRequestReceived() {
+    public void assertRequestReceived() {
         verifyResponseContainsString("receivedRequest");
         verifyResponseContainsString("\"test\": 123}");
     }
 
     @Step("The last <endpoint> request details should be returned")
-    public void AssertLastRequest(String endpoint) {
+    public void assertLastRequest(String endpoint) {
         verifyResponseContainsString(endpoint);
         verifyResponseContainsString("\"mediaTypeUsed\": \"application/json\"");
         verifyResponseContainsString("bodyReceived");
@@ -33,7 +28,7 @@ public class Assertions {
     }
 
     @Step("The unauthorized request error details should be returned")
-    public void AssertUnauthorizedErrorDetails() {
+    public void assertUnauthorizedErrorDetails() {
         verifyResponseContainsString("unauthorised");
         verifyResponseContainsString("\"statusCode\": 401");
         verifyResponseContainsString("\"error\": \"Unauthorized\"");

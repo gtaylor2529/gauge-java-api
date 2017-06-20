@@ -1,12 +1,10 @@
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
-import org.junit.Assert;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +13,7 @@ import java.util.TimeZone;
 public class GenericPost {
 
     @Step("Post to the <endpoint> endpoint")
-    public void PostEndPoint(String endpoint) {
+    public void postEndPoint(String endpoint) {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
         HttpResponse<String> httpResponse;
         String url = "http://localhost:3000/" + endpoint;
@@ -50,7 +48,7 @@ public class GenericPost {
     }
 
     @Step("Post to the <endpoint> endpoint with invalid JSON")
-    public void PostEndPointWithInvalidJSON(String endpoint) {
+    public void postEndPointWithInvalidJSON(String endpoint) {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
         HttpResponse<String> httpResponse;
         String url = "http://localhost:3000/" + endpoint;
