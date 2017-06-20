@@ -6,8 +6,10 @@ import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
+import org.junit.Assert;
 
 public class GenericGet {
+
     @Step("Retrieve the last updated time from the <endpoint> endpoint")
     public void GetEndPoint(String endpoint) {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
@@ -23,9 +25,10 @@ public class GenericGet {
             dataStore.put("httpResponseStatusText", httpResponseStatusText);
             Gauge.writeMessage(httpResponseStatusText);
             Gauge.writeMessage(httpResponse.getBody().toString());
-            String updatedTime = httpResponse.getBody().getObject().getJSONArray("internal_server_error").getJSONObject(0).get("lastUpdated").toString();
-        }
-        catch (UnirestException e) {
+            String updatedTime = httpResponse.getBody().getObject().getJSONArray(endpoint.substring(0, endpoint.indexOf("/")))
+                    .getJSONObject(0).get("lastUpdated").toString();
+            dataStore.put("updatedTime", updatedTime);
+        } catch (UnirestException e) {
             e.printStackTrace();
         }
 
@@ -48,11 +51,12 @@ public class GenericGet {
             dataStore.put("httpResponseCode", httpResponseCode);
             String httpResponseStatusText = httpResponse.getStatusText();
             dataStore.put("httpResponseStatusText", httpResponseStatusText);
+            String httpBody = httpResponse.getBody().toString();
+            dataStore.put("httpBody", httpBody);
             Gauge.writeMessage(httpResponse.getBody());
             Gauge.writeMessage(httpResponseStatusText);
 
-        }
-        catch (UnirestException e) {
+        } catch (UnirestException e) {
             e.printStackTrace();
         }
     }
@@ -60,6 +64,14 @@ public class GenericGet {
 
     @Step("Assert against last updated time")
     public void AssertLastUpdatedTime() {
-        //TO DO
+        DataStore dataStore = DataStoreFactory.getScenarioDataStore();
+        String updatedTime = (String) dataStore.get("updatedTime");
+        String timeBeforePost = (String) dataStore.get("timeBeforePost");
+        String timeAfterPost = (String) dataStore.get("timeAfterPost");
+        if (updatedTime.equals(timeBeforePost)) {
+            Assert.assertEquals(updatedTime, timeBeforePost);
+        } else {
+            Assert.assertEquals(updatedTime, timeAfterPost);
+        }
     }
 }

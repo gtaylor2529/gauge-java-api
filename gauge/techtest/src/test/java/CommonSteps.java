@@ -4,6 +4,7 @@ import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import org.junit.Assert;
 
 public class CommonSteps {
+
     @Step("Then the response will be <expectedResponse>")
     public void ApiResponse(String expectedResponse) {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
