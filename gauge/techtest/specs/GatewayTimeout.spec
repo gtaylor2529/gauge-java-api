@@ -12,6 +12,9 @@ Gateway_timeout is returned when doing a POST to the /gateway_timeout endpoint
 * Post to the "gateway_timeout" endpoint
 * Then the response will be "Service Unavailable"
 * The response code should be "503"
+* The request received should be returned
+* Retrieve the last updated time from the "gateway_timeout/last" endpoint
+* Assert against last updated time
 
 OK is returned when doing a GET to the /gateway_timeout endpoint
 ----------------------------------------------------------------
@@ -24,4 +27,12 @@ Details of the last response is returned when doing a GET to /gateway_timeout/la
 -------------------------------------------------------------------------------------------
 
 * Get to the "gateway_timeout/last" endpoint
-// Implement a step that checks the response contains the correct details
+* Then the response will be "OK"
+* The response code should be "200"
+* The last "gateway_timeout" request details should be returned
+
+Bad Request is returned when doing a POST with invalid JSON
+-----------------------------------------------------------
+* Post to the "gateway_timeout" endpoint with invalid JSON
+* Then the response will be "Bad Request"
+* The response code should be "400"

@@ -12,6 +12,9 @@ Forbidden is returned when doing a POST to the /forbidden endpoint
 * Post to the "forbidden" endpoint
 * Then the response will be "Forbidden"
 * The response code should be "403"
+* The request received should be returned
+* Retrieve the last updated time from the "forbidden/last" endpoint
+* Assert against last updated time
 
 OK is returned when doing a GET to the /forbidden endpoint
 ----------------------------------------------------------------
@@ -24,4 +27,12 @@ Details of the last response is returned when doing a GET to /forbidden/last end
 -------------------------------------------------------------------------------------------
 
 * Get to the "forbidden/last" endpoint
-// Implement a step that checks the response contains the correct details
+* Then the response will be ""
+* The response code should be "999"
+* The last "forbidden" request details should be returned
+
+Bad Request is returned when doing a POST with invalid JSON
+-----------------------------------------------------------
+* Post to the "forbidden" endpoint with invalid JSON
+* Then the response will be "Bad Request"
+* The response code should be "400"
