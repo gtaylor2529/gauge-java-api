@@ -15,3 +15,9 @@ This document details all of the discrepancies found between the Automation Tech
 
 - A GET request to /internal_server_error returns a 200 OK response. The expected result based on the documenation is a 500 Internal Server Error
 - In the documentation the "receivedRequest" JSON object in the POST response is different to the JSON provided in the POST request
+
+## /unauthorized endpoint
+
+- A POST request to /unauthorized returns an array of JSON objects called "receivedRequest". This has not been documented
+- A GET request to /unauthorized/lost returns the JSON objects "mediaTypeUsed" and "bodyReceived". This has not been documented
+
