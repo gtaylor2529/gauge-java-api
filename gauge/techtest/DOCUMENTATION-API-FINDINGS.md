@@ -1,6 +1,6 @@
 # Documentation and API Findings
 
-This document details all of the discrepancies found between the Automation Technical Test Web API document and the fully working API
+This document details all of the discrepancies found between the Automation Technical Test Web API document and the fully working API.
 
 ## Homepage endpoint
 
@@ -20,6 +20,7 @@ This document details all of the discrepancies found between the Automation Tech
 
 - A POST request to /unauthorized returns an array of JSON objects called "receivedRequest". This has not been documented
 - A GET request to /unauthorized/lost returns the JSON objects "mediaTypeUsed" and "bodyReceived". This has not been documented
+- The words "authorized" and "authorised" are used inconsistently across this endpoint
 
 ## /no_response
 
@@ -36,9 +37,9 @@ This document details all of the discrepancies found between the Automation Tech
 
 - A GET request to /forbidden returns a 200 OK response. The expected result based on the documentation is a 200 Forbidden - the documentation needs changing
 - In the documentation the "receivedRequest" JSON object in the POST response is different to the JSON provided in the POST request
-- A GET request to /forbidden/last returns a 999 response. The expected result based on the documentation is a 200 OK - this looks like a defect in the API
+- A GET request to /forbidden/last returns a 999 response. The expected result based on the documentation is a 200 OK - unsure if the documentation needs changing or if this is a defect
 
-# /gateway_timeout
+## /gateway_timeout
 
 - The documentation for /gateway_timeout specifies multiple times that a 503 Gateway timeout should be returned. This should either be changed to a 503 Service Unavailable or a 504 Gateway timeout
 - A GET request to /gateway_timeout returns a 200 OK response. The expected result based on the documentation is a 200 Gateway timeout - the documentation needs changing
